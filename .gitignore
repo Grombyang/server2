@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 .DS_Store
 vendor
+=======
+.DS_Store
+vendor
+>>>>>>> f8fc2fe71957471d8fb0b38ef1ddd11bf38515b6
 .idea

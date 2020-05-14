@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 exclude_paths:
 - "documentation/"
+=======
+exclude_paths:
+- "documentation/"
+>>>>>>> f8fc2fe71957471d8fb0b38ef1ddd11bf38515b6
 - "application/language/"
