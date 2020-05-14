@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-=======
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
->>>>>>> f8fc2fe71957471d8fb0b38ef1ddd11bf38515b6
 RewriteRule ^(.*)$ index.php/$1 [L]

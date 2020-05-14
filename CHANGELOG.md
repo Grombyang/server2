@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-Changelog:
-===========
 
 ### UNRELEASED
 * Added support for CodeIgniter controller's index methods (index_GET, index_POST...)
@@ -132,4 +129,3 @@ Changelog:
 * Fixed Limit bug (limit of 5 would allow 6 requests).
 * Added logging for invalid API key requests.
 * Changed serialize to serialized.
->>>>>>> f8fc2fe71957471d8fb0b38ef1ddd11bf38515b6

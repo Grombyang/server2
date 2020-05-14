@@ -34,7 +34,7 @@ class Rest extends REST_Controller {
         $hasil = $this->server_model->get_user_by_nik($passCredential['nomor_induk']);
         if ($hasil) {
             if ($this->bcrypt->check_password($passCredential['password'], $hasil['password'])) {
-                if ($this->server_model->update_password($this->bcrypt->hash_password($passCredential['new_password']), $hasil['user_id'])) {
+                if ($this->server_model->update_password($this->bcrypt->hash_password($passCredential['new_password']), $hasil['nim'])) {
                     $this->response(array('title' => 'Sukses', 'status' => true, 'body' => 'Berhasil mengganti password!'), REST_Controller::HTTP_OK);
                 } else {
                     $this->response(array('title' => 'Kesalahan', 'status' => false, 'body' => 'Terjadi kesalahan di sisi server!'), REST_Controller::HTTP_BAD_GATEWAY);
@@ -59,7 +59,7 @@ class Rest extends REST_Controller {
         $credential = $this->server_model->get_user_by_username($ps['username']);
         if (empty($credential)) {
             $pesan = array('title' => 'Login', 'status' => FALSE, 'body' => 'Login gagal!');
-            $credential = array('user_id' => "", 'nomor_induk' => "", 'nama' => "", 'jabatan' => "", 'no_hp' => "");
+            $credential = array('nim' => "", 'nomor_induk' => "", 'nama' => "", 'jabatan' => "", 'no_hp' => "");
             $this->response($pesan + $credential, REST_Controller::HTTP_ACCEPTED);
             return;
         }
@@ -84,12 +84,12 @@ class Rest extends REST_Controller {
         if ($user['peran'] == 1) {
             $temp = $this->server_model->get_mahasiswa(null, $user['nim']);
             if (!empty($temp)) {
-                $user['user_id'] = $temp[0]['user_id'];
+                $user['nim'] = $temp[0]['nim'];
             }
         } else {
             $temp = $this->server_model->get_mahasiswa(null, $user['nim']);
             if (!empty($temp)) {
-                $user['user_id'] = $temp[0]['user_id'];
+                $user['nim'] = $temp[0]['nim'];
             }
         }
         if ($temp == null) {

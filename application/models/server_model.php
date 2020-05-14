@@ -9,17 +9,17 @@ Class Server_model extends CI_Model {
     
     public function get_user_by_nik($nik){
         $res = $this->db->where('nim', $nik)->get('mahasiswa')->row_array();
-        $temp = $res['user_id'];
-        $res = $this->db->where('user_id',$res['user_id'])->get('user')->row_array();
-        $res = array_merge($res, array('user_id'=>$temp));
+        $temp = $res['nim'];
+        $res = $this->db->where('nim',$res['nim'])->get('user')->row_array();
+        $res = array_merge($res, array('nim'=>$temp));
         return $res;
     }
 
     
     //start get mahasiswa untuk tiap kemungkinan
-    public function get_mahasiswa($user_id = null, $nip = null) {
-        if ($user_id !== null) {
-            $this->db->where("user_id", $user_id);
+    public function get_mahasiswa($nim = null, $nip = null) {
+        if ($nim !== null) {
+            $this->db->where("nim", $nim);
         } else if ($nip != null) {
             $this->db->where('nim', $nip);
         }
@@ -46,7 +46,7 @@ Class Server_model extends CI_Model {
     //register fix
     public function register($user) {
         $temp = array();
-        $keep = array('username', 'password', 'user_id',);
+        $keep = array('username', 'password', 'nim',);
         foreach ($user as $key => $value) {
             if (in_array($key, $keep)) {
                 $temp[$key] = $value;
@@ -54,7 +54,7 @@ Class Server_model extends CI_Model {
         }
         $cross_check = $this->db->get('user')->result_array();
         foreach ($cross_check as $key => $value) {
-            if ($value['username'] == $temp['username'] || $value['user_id'] == $temp['user_id']) {
+            if ($value['username'] == $temp['username'] || $value['nim'] == $temp['nim']) {
                 return false;
             }
         }
